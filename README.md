@@ -43,6 +43,7 @@ The **Laravel Fatal Error Lab** is a comprehensive demonstration application des
 
 - PHP 8.2 or higher
 - Composer
+- MySQL 8.0 or higher
 - Node.js and npm (for frontend assets)
 
 ### Installation
@@ -69,12 +70,23 @@ The **Laravel Fatal Error Lab** is a comprehensive demonstration application des
    php artisan key:generate
    ```
 
-5. **Run database migrations**
+5. **Configure MySQL database**
+   ```bash
+   # Update .env file with MySQL credentials
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=fatal_error_demo
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+6. **Run database migrations**
    ```bash
    php artisan migrate
    ```
 
-6. **Start the development server**
+7. **Start the development server**
    ```bash
    composer run dev
    ```
@@ -110,7 +122,7 @@ The **Laravel Fatal Error Lab** is a comprehensive demonstration application des
 ### Backend
 - **PHP 8.2+** - Modern PHP with strict typing
 - **Laravel 12.0** - Latest Laravel framework
-- **SQLite** - Lightweight database
+- **MySQL** - Production-ready relational database
 - **Laravel Tinker** - Interactive shell
 
 ### Frontend
@@ -155,6 +167,7 @@ This project includes comprehensive POC documentation that validates:
 ### ✅ Technical Validation
 - **Error Handling Coverage** - All 8 major PHP error types demonstrated
 - **Laravel Integration** - Seamless integration with Laravel's error handling system
+- **MySQL Database** - Production-ready relational database with proper indexing
 - **Real-time Monitoring** - Live log viewing and error tracking
 - **Performance Metrics** - Response times < 100ms, memory usage < 10MB
 - **Security Analysis** - Zero vulnerabilities, safe error simulation
@@ -195,12 +208,15 @@ fatal-error-demo/
 ## 🔧 Configuration
 
 ### Database
-- **Default**: SQLite (`database/database.sqlite`)
-- **Testing**: In-memory SQLite
+- **Default**: MySQL 8.0+ (production database)
+- **Testing**: In-memory SQLite for fast test execution
+- **Features**: ACID compliance, foreign key constraints, full-text search
+- **Performance**: Optimized for high-volume error logging
 
 ### Logging
-- **Driver**: File-based
+- **Driver**: File-based + Database logging
 - **Location**: `storage/logs/laravel.log`
+- **Database**: Error logs stored in MySQL for analysis
 - **Real-time**: Available via `/logs` endpoint
 
 ## 🛡️ Safety Features
